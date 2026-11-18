@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DataFuse AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <h1>DataFuse AI</h1>
+    <p class="subtitle">Upload a tabular file (CSV, Excel, JSON, TSV, TXT).</p>
+
+    <form id="upload-form">
+      <input type="file" id="file-input"
+             accept=".csv,.tsv,.txt,.json,.xlsx,.xls" required>
+      <button type="submit">Upload</button>
+    </form>
+
+    <div id="result" class="result" hidden></div>
+
+    <section id="dataset" hidden>
+      <div id="file-info" class="file-info"></div>
+      <div id="sheet-picker" class="sheet-picker" hidden>
+        <label for="sheet-select">Worksheet:</label>
+        <select id="sheet-select"></select>
+      </div>
+      <div id="table-wrap" class="table-wrap"></div>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+</body>
+</html>
