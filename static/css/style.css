@@ -17,3 +17,10 @@ th, td { padding: 6px 10px; border-bottom: 1px solid #e4e7eb; text-align: left; 
 th { background: #f0f2f5; }
 th small { display: block; font-weight: normal; color: #7b8794; }
 td.empty { color: #b0b8c1; }
+.profile { margin-top: 28px; }
+.profile h2 { font-size: 1.1rem; margin: 24px 0 8px; }
+.cards { display: flex; flex-wrap: wrap; gap: 10px; }
+.card { flex: 1 1 140px; border: 1px solid #dde1e6; border-radius: 4px; padding: 10px 12px; }
+.card .label { color: #7b8794; font-size: .75rem; }
+.card .value { font-size: 1.25rem; font-weight: 600; }
+.note { color: #5f6b7a; font-size: .8rem; margin: 6px 0 0; }

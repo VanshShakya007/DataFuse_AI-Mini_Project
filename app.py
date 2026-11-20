@@ -1,5 +1,6 @@
 import os
 import uuid
+from modules import profiling
 
 from flask import Flask, jsonify, render_template, request
 from werkzeug.utils import secure_filename
@@ -76,7 +77,18 @@ def preview(dataset_id):
         "summary": file_handler.dataframe_summary(df),
     })
 
+@app.route("/api/dataset/<dataset_id>/profile")
+def profile(dataset_id):
+    sheet = request.args.get("sheet")
+    try:
+        path, extension, _ = file_handler.find_dataset(UPLOAD_FOLDER, dataset_id)
+        df = file_handler.load_dataframe(path, extension, sheet)
+    except DatasetNotFoundError as error:
+        return jsonify({"error": str(error)}), 404
+    except FileLoadError as error:
+        return jsonify({"error": str(error)}), 400
 
+    return jsonify(profiling.profile_dataframe(df))
 @app.errorhandler(413)
 def file_too_large(error):
     return jsonify({"error": "File is too large (limit is 50 MB)."}), 413
